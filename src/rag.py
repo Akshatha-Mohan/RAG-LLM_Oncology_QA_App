@@ -1,4 +1,4 @@
-from langchain import prompts
+from langchain import PromptTemplate
 from langchain.llms import CTransformers
 from langchain.chains import RetrievalQA
 from langchain.embeddings import SentenceTransformerEmbeddings
@@ -16,7 +16,7 @@ app = FastAPI()
 templates = Jinja2Templates(directory="templates")
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
-local_llm = "TheBloke/meditron-7B-GGUF/"
+local_llm = "meditron-7b.Q4_K_M.gguf"
 
 config = {
 'max_new_tokens': 1024,
@@ -58,7 +58,7 @@ client = QdrantClient(
 
 db = Qdrant(client=client, embeddings=embeddings, collection_name="vector_db")
 
-prompt = prompts.BasePromptTemplate(template=prompt_template, input_variables=['context', 'question'])
+prompt = PromptTemplate(template=prompt_template, input_variables=['context', 'question'])
 
 retriever = db.as_retriever(search_kwargs={"k":1})
 

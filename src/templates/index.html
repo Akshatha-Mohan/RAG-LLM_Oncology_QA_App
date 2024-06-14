@@ -3,68 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Investment Banking Chatbot</title>
+    <title>Medical Query App</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            background-color: black;
+            background-color: #f4f4f9;
             font-family: 'Poppins', sans-serif;
-            color: white;
+            color: #333;
         }
         .chat-container {
             max-width: 800px;
             margin: 50px auto;
-            margin-top: 10%;
-            padding: 20px;
-            background-color: #333;
+            margin-top: 5%;
+            padding: 30px;
+            background-color: #fff;
             border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         .chat-heading {
             text-align: center;
             font-size: 2.5em;
             font-weight: 600;
             margin-bottom: 30px;
-            color: #ffd700; /* Golden color for the heading */
+            color: #007bff;
         }
         .chat-input {
-            margin-top: 20px; /* Added margin */
+            margin-top: 20px;
             margin-bottom: 20px;
-            height: 100px; /* Increased height */
+            height: 150px;
+            resize: none;
+            border: 2px solid #007bff;
+            border-radius: 10px;
+            padding: 10px;
         }
         .chat-button {
-            background-color: green;
+            background-color: #007bff;
             color: white;
-            padding: 10px 20px;
+            padding: 15px 30px;
             font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+            width: 100%;
         }
         .chat-response {
-            background-color: #444;
-            padding: 15px;
-            border-radius: 5px;
-            min-height: 100px; /* Minimum height for the response box */
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            min-height: 150px;
             margin-top: 20px;
-        }
-        .accordion {
-            margin-top: 20px;
-            background-color: #444;
-            border-radius: 5px;
+            border: 2px solid #007bff;
+            white-space: pre-wrap;
         }
         .accordion-button {
-            color: white;
-            background-color: #555;
+            color: #007bff;
+            background-color: #f9f9f9;
         }
         .accordion-body {
-            color: white; /* Improved visibility of text */
+            color: #333;
         }
-        pre {
-            white-space:pre-wrap;
+        .accordion-item {
+            border: 2px solid #007bff;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
     <div class="container chat-container">
-        <h1 class="chat-heading">Medical RAG QA App</h1>
+        <h1 class="chat-heading">Medical Query App</h1>
 
         <div class="accordion" id="appDescriptionAccordion">
             <div class="accordion-item">
@@ -74,8 +82,8 @@
                     </button>
                 </h2>
                 <div id="collapseDescription" class="accordion-collapse collapse" aria-labelledby="descriptionHeading" data-bs-parent="#appDescriptionAccordion">
-                    <div class="accordion-body text-dark">
-                        This is a RAG implementation using Open Source stack. Intel's Neural Chat has been used to build this app along with BGE Embeddings as an embedding model, Chroma DB as a vector store, and Langchain & CTransformers as an orchestration frameworks.
+                    <div class="accordion-body">
+                        This FastAPI application integrates transformer-based language models (LLMs) and Retrieval-Augmented Generation (RAG) techniques to deliver precise medical question-answering. It utilizes SentenceTransformer embeddings and the Qdrant vector database to optimize user experience.
                     </div>
                 </div>
             </div>
@@ -108,13 +116,12 @@
                 }
 
                 const data = await response.json();
-                document.getElementById('response').innerHTML = `<p>${data.answer}</p><br><pre><b>Context: </b> ${data.source_document}</pre><br><pre><b>Source Document: </b> ${data.doc}</pre>`;
+                document.getElementById('response').innerHTML = `<p>${data.answer}</p><br><pre><b>Context:</b> ${data.source_document}</pre><br><pre><b>Source Document:</b> ${data.doc}</pre>`;
             } catch (error) {
                 console.error('Error:', error);
                 document.getElementById('response').innerHTML = '<p>Error processing your request</p>';
             }
         });
-
     </script>
 </body>
 </html>

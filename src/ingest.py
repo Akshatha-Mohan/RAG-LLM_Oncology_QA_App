@@ -4,7 +4,7 @@ from langchain.document_loaders import DirectoryLoader
 from langchain.document_loaders import PyPDFLoader
 from langchain.vectorstores import Qdrant
 
-#
+#Create Embeddings in the directory
 embeddings = SentenceTransformerEmbeddings(model_name="NeuML/pubmedbert-base-embeddings")
 
 print(embeddings)
