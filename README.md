@@ -52,6 +52,7 @@ Ensure you are logged into Hugging Face to access the necessary models.
     ```
     Log in using the write token generated in your Hugging Face account.
 
+    or directly **Download** the model from Hugging Face - meditron-7b-Q4_K_M-GGUF
 2. **Run the RAG Application**:
     From the `src` folder, start the FastAPI application using Uvicorn:
     ```sh
